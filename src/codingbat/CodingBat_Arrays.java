@@ -1,5 +1,6 @@
 package codingbat;
 
+import java.rmi.Remote;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
@@ -143,6 +144,51 @@ public class CodingBat_Arrays {
 			}
 		}
 		return count;
+	}
+
+	public static boolean has77(int[] nums) {
+		int count = 0;
+		int decrement = 0;
+		for (int i = 0; i < nums.length - 1; i++) {
+
+			if (nums[i] == 7 && nums[i + 1] == 7) {
+				return true;
+			} else if (nums[i] == 7 && nums[i + 1] != 7) {
+				count++;
+			} else if ((i > 0 && nums[i - 1] == 7) && nums[i] != 7 && nums[i + 1] == 7) {
+				count++;
+			} else if ((i > 0 && nums[i] != 7 && nums[i + 1] != 7)) {
+				decrement++;
+			}
+
+			if (count - decrement == 2) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean has12(int[] nums) {
+		boolean found1 = false;
+		boolean found2 = false;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 1) {
+				found1 = true;
+				int index = i;
+				for (int j = index; j < nums.length; j++) {
+					if (nums[j] == 2) {
+						found2 = true;
+					}
+				}
+				if (found1 && found2 ) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		}
+		return false;
 	}
 
 }

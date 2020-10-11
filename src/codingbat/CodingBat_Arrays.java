@@ -1,8 +1,6 @@
 package codingbat;
 
-import java.rmi.Remote;
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 /**
  * Created by tairovich_jr on Oct 09, 2020
@@ -36,7 +34,6 @@ public class CodingBat_Arrays {
 		for (int i = 0; i < nums.length - 1; i++) {
 			if (nums[i] == 2 && nums[i + 1] == 2)
 				return true;
-
 		}
 		return false;
 	}
@@ -66,7 +63,6 @@ public class CodingBat_Arrays {
 			ints[i] = i;
 		}
 		return ints;
-
 	}
 
 	public boolean only14(int[] nums) {
@@ -74,7 +70,6 @@ public class CodingBat_Arrays {
 		if (nums.length == 0) {
 			return true;
 		}
-
 		boolean flag = false;
 		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] == 1 || nums[i] == 4) {
@@ -99,7 +94,6 @@ public class CodingBat_Arrays {
 		if (nums.length < 2) {
 			return true;
 		}
-
 		boolean flag = false;
 		for (int i = 0; i < nums.length - 1; i++) {
 
@@ -108,7 +102,6 @@ public class CodingBat_Arrays {
 			} else {
 				return false;
 			}
-
 		}
 		return flag;
 	}
@@ -126,11 +119,9 @@ public class CodingBat_Arrays {
 				_44 = true;
 			}
 		}
-
 		if (_22 == _44) {
 			return false;
 		}
-
 		return true;
 	}
 
@@ -150,7 +141,6 @@ public class CodingBat_Arrays {
 		int count = 0;
 		int decrement = 0;
 		for (int i = 0; i < nums.length - 1; i++) {
-
 			if (nums[i] == 7 && nums[i + 1] == 7) {
 				return true;
 			} else if (nums[i] == 7 && nums[i + 1] != 7) {
@@ -160,12 +150,10 @@ public class CodingBat_Arrays {
 			} else if ((i > 0 && nums[i] != 7 && nums[i + 1] != 7)) {
 				decrement++;
 			}
-
 			if (count - decrement == 2) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -181,9 +169,9 @@ public class CodingBat_Arrays {
 						found2 = true;
 					}
 				}
-				if (found1 && found2 ) {
+				if (found1 && found2) {
 					return true;
-				}else {
+				} else {
 					return false;
 				}
 			}
@@ -191,4 +179,80 @@ public class CodingBat_Arrays {
 		return false;
 	}
 
+	public static boolean modThree(int[] nums) {
+
+		int countEven = 0;
+		int countOdd = 0;
+		// 2, 4, 2, 5
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] % 2 == 0 && nums[i + 1] % 2 == 0) {
+				countEven++;
+			}
+			if (nums[i] % 2 != 0 && nums[i + 1] % 2 != 0) {
+				countOdd++;
+			}
+
+			if (countEven == 2 || countOdd == 2) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean twoTwo(int[] nums) {
+
+		if (nums.length < 1 || !(Arrays.stream(nums).anyMatch(i -> i == 2)))
+			return true;
+
+		boolean found = false;
+		for (int i = 0; i < nums.length; i++) {
+			if (i > 0 && nums[i] == 2) {
+				if (nums[i - 1] == 2 || (i < nums.length - 1 && nums[i + 1] == 2)) {
+					found = true;
+				} else
+					found = false;
+			}
+		}
+		return found;
+	}
+
+	public static boolean sameEnds(int[] nums, int len) {
+//		  int[] begin = new int[len];
+//		  for (int i = 0; i < begin.length; i++) {
+//			begin[i] = nums[i];
+//		  }
+//		  int index = nums.length - begin.length;
+//		  boolean flag = true;
+//		  for (int i = index; i < nums.length; i++) {
+//			 if(begin[i - index] != nums[i]) {
+//				 flag = false;
+//			 }
+//		}
+//		  return flag;
+		boolean flag = true;
+		// [5, 6, 45, 99, 13, 5, 6], 2
+		for (int i = 0; i < len; i++) {
+			if (nums[i] != nums[(nums.length - len + i)]) {
+				flag = false;
+			}
+		}
+
+		return flag;
+	}
+
+	public static boolean tripleUp(int[] nums) {
+		int count = 0;
+		for (int i = 0; i < nums.length-1; i++) {
+			// 1, 4, 5, 6, 2
+			if (i>0 && nums[i] - nums[i-1] == 1 ) {
+				if (nums[i+1] - nums[i] == 1) {
+					count++;
+				}
+				if (count == 1) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

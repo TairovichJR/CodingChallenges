@@ -242,10 +242,10 @@ public class CodingBat_Arrays {
 
 	public static boolean tripleUp(int[] nums) {
 		int count = 0;
-		for (int i = 0; i < nums.length-1; i++) {
+		for (int i = 0; i < nums.length - 1; i++) {
 			// 1, 4, 5, 6, 2
-			if (i>0 && nums[i] - nums[i-1] == 1 ) {
-				if (nums[i+1] - nums[i] == 1) {
+			if (i > 0 && nums[i] - nums[i - 1] == 1) {
+				if (nums[i + 1] - nums[i] == 1) {
 					count++;
 				}
 				if (count == 1) {
@@ -255,4 +255,67 @@ public class CodingBat_Arrays {
 		}
 		return false;
 	}
+
+	public static int[] fizzArray3(int start, int end) {
+
+		int n[] = new int[end - start];
+		for (int i = 0; i < n.length; i++, start++)
+			n[i] = start;
+		return n;
+	}
+
+	public static int[] shiftLeft(int[] nums) {
+		for (int i = 0; i < nums.length-1; i++) {
+			int temp = nums[i];
+			nums[i] = nums[i + 1];
+			nums[i + 1] = temp;
+		}
+		
+		return nums;
+	}
+
+	public static int[] tenRun(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			if (i> 0 && nums[i] % 10 != 0 && nums[i-1] % 10 == 0 ) 
+				nums[i] = nums[i-1];
+		}
+		return nums;
+	}
+
+	public static int[] pre4(int[] nums) {
+		int index = Arrays.asList( 
+				Arrays.stream(nums)
+					.boxed()
+					.toArray(Integer[]::new))
+					.indexOf(4);
+		if (index != -1 ) {
+			int[] n = new int[index];
+			for (int i = 0; i < n.length; i++) {
+				n[i] = nums[i];
+			}
+			return n;
+		}
+		return new int[] {};
+	}
+
+	public static int[] post4(int[] nums) {
+		int index = Arrays.asList( 
+				Arrays.stream(nums)
+					.boxed()
+					.toArray(Integer[]::new))
+					.lastIndexOf(4);
+		if (index != -1 ) {
+			int[] n = new int[nums.length - index-1];
+			for (int i = 0; i < n.length; i++) 
+				n[i] = nums[index+1+i];
+			return n;
+		}
+		return new int[] {};
+	}
+
 }
+
+
+
+
+

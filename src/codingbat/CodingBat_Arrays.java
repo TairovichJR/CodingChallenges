@@ -1,6 +1,12 @@
 package codingbat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Created by tairovich_jr on Oct 09, 2020
@@ -265,30 +271,26 @@ public class CodingBat_Arrays {
 	}
 
 	public static int[] shiftLeft(int[] nums) {
-		for (int i = 0; i < nums.length-1; i++) {
+		for (int i = 0; i < nums.length - 1; i++) {
 			int temp = nums[i];
 			nums[i] = nums[i + 1];
 			nums[i + 1] = temp;
 		}
-		
+
 		return nums;
 	}
 
 	public static int[] tenRun(int[] nums) {
 		for (int i = 0; i < nums.length; i++) {
-			if (i> 0 && nums[i] % 10 != 0 && nums[i-1] % 10 == 0 ) 
-				nums[i] = nums[i-1];
+			if (i > 0 && nums[i] % 10 != 0 && nums[i - 1] % 10 == 0)
+				nums[i] = nums[i - 1];
 		}
 		return nums;
 	}
 
 	public static int[] pre4(int[] nums) {
-		int index = Arrays.asList( 
-				Arrays.stream(nums)
-					.boxed()
-					.toArray(Integer[]::new))
-					.indexOf(4);
-		if (index != -1 ) {
+		int index = Arrays.asList(Arrays.stream(nums).boxed().toArray(Integer[]::new)).indexOf(4);
+		if (index != -1) {
 			int[] n = new int[index];
 			for (int i = 0; i < n.length; i++) {
 				n[i] = nums[i];
@@ -299,23 +301,132 @@ public class CodingBat_Arrays {
 	}
 
 	public static int[] post4(int[] nums) {
-		int index = Arrays.asList( 
-				Arrays.stream(nums)
-					.boxed()
-					.toArray(Integer[]::new))
-					.lastIndexOf(4);
-		if (index != -1 ) {
-			int[] n = new int[nums.length - index-1];
-			for (int i = 0; i < n.length; i++) 
-				n[i] = nums[index+1+i];
+		int index = Arrays.asList(Arrays.stream(nums).boxed().toArray(Integer[]::new)).lastIndexOf(4);
+		if (index != -1) {
+			int[] n = new int[nums.length - index - 1];
+			for (int i = 0; i < n.length; i++)
+				n[i] = nums[index + 1 + i];
 			return n;
 		}
 		return new int[] {};
 	}
 
+	public static int[] notAlone(int[] nums, int val) {
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (i > 0 && nums[i] == val) {
+
+				int oneBefore = nums[i - 1];
+				int oneAfter = nums[i + 1];
+				if (oneBefore != oneAfter && oneBefore != val && oneAfter != val) {
+					int max = Math.max(nums[i - 1], nums[i + 1]);
+					nums[i] = max;
+				}
+			}
+		}
+		return nums;
+	}
+
+	public static int[] zeroFront(int[] nums) {
+
+//		if (nums.length < 1) return new int[] {};
+//		boolean flag = true;
+//		while (flag) {
+//			int count = 0;
+//			for (int i = 0; i < nums.length-1; i++) {
+//				if (nums[i] != 0 && nums[i+1] == 0) {
+//					int nonZero = nums[i];
+//					nums[i] = nums[i+1];
+//					nums[i+1] = nonZero;
+//				}else 
+//					count++;
+//			}
+//			if (count == nums.length-1) flag = false;
+//		}
+//		return nums;
+		int count = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 0) {
+				nums[i] = nums[count];
+				nums[count] = 0;
+				count++;
+			}
+		}
+		return nums;
+	}
+
+	public static int[] withoutTen(int[] nums) {
+		if (nums.length < 1)
+			return nums;
+
+		nums = Arrays.stream(nums).map(i -> i == 10 ? 0 : i).toArray();
+		boolean flag = true;
+		while (flag) {
+			int count = 0;
+			for (int i = 0; i < nums.length - 1; i++) {
+				if (nums[i] == 0 && nums[i + 1] != 0) {
+					int zero = nums[i];
+					nums[i] = nums[i + 1];
+					nums[i + 1] = zero;
+				} else
+					count++;
+			}
+			if (count == nums.length - 1) {
+				flag = false;
+			}
+		}
+		return nums;
+	}
+
+	public static int[] zeroMax(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 0) {
+				int index = i + 1;
+				int largest = nums[i];
+				for (int j = index; j < nums.length; j++) {
+					if (nums[j] % 2 == 1 && nums[j] > largest) {
+						largest = nums[j];
+					}
+				}
+				nums[i] = largest;
+			}
+		}
+		return nums;
+	}
+
+	public static int[] evenOdd(int[] nums) {
+		return IntStream.concat(IntStream.of(Arrays.stream(nums).filter(i -> i % 2 == 0).toArray()),
+				IntStream.of(Arrays.stream(nums).filter(i -> i % 2 == 1).toArray())).toArray();
+	}
+
+	public static String[] fizzBuzz(int start, int end) {
+		List<String> values = new ArrayList<>();
+
+		for (int i = start; i < end; i++) {
+			if (i % 3 == 0 && i % 5 == 0) {
+				values.add("FizzBuzz");
+			} else if (i % 3 == 0) {
+				values.add("Fizz");
+			} else if (i % 5 == 0) {
+				values.add("Buzz");
+			} else {
+				values.add(String.valueOf(i));
+			}
+		}
+
+		return values.toArray(new String[values.size()]);
+	}
+
+	public static boolean no14(int[] nums) {
+		boolean hasOne = false;
+		boolean hasFour = false;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 1) {
+				hasOne = true;
+			}
+			if (nums[i] == 4) {
+				hasFour = true;
+			}
+		}
+		return !hasOne || !hasFour;
+	}
 }
-
-
-
-
-

@@ -99,10 +99,52 @@ public class CodingBat_Strings {
 			}
 		}
 
-	    if(str.length() >= 2 && str.substring(str.length() - 2).equals("is")) {
-	    	isCount++;
-	    }
-		
+		if (str.length() >= 2 && str.substring(str.length() - 2).equals("is")) {
+			isCount++;
+		}
+
 		return isCount == notCount;
 	}
+
+	public static boolean gHappy(String str) {
+
+		boolean flag = true;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == 'g') {
+				if (i > 0 && str.charAt(i - 1) == 'g') {
+					flag = true;
+				} else if (i != str.length() - 1 && str.charAt(i + 1) == 'g') {
+					flag = true;
+				} else {
+					flag = false;
+				}
+			}
+		}
+		return flag;
+	}
+
+	public static int countTriple(String str) {
+		int count = 0;
+
+		for (int i = 0; i < str.length() - 2; i++) {
+			char c = str.charAt(i);
+			if (c == str.charAt(i + 1) && c == str.charAt(i + 2)) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static int sumDigits(String str) {
+		int sum = Arrays.stream(str.split("")).filter(i -> (!i.isEmpty() && Character.isDigit(i.charAt(0))))
+				.map(i -> Integer.parseInt(i)).mapToInt(Integer::intValue).sum();
+
+		return sum;
+	}
+
+	public static String sameEnds(String string) {
+		return "";
+	}
+
+
 }

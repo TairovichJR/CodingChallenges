@@ -143,8 +143,27 @@ public class CodingBat_Strings {
 	}
 
 	public static String sameEnds(String string) {
-		return "";
+		String result = "";
+		for (int i = 0; i < string.length() / 2; i++) {
+			String begin = string.substring(0, i + 1);
+			String end = string.substring(string.length() - i - 1);
+			if (begin.equals(end))
+				result = begin;
+		}
+		return result;
 	}
 
+	public static String mirrorEnds(String string) {
+		String result = "";
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0; i < string.length(); i++) {
+			String begin = string.substring(0, i + 1);
+			String endReversed = buffer.append(string.substring(string.length() - i - 1)).reverse().toString();
+			buffer.delete(0, endReversed.length() + 1);
+			if (begin.equals(endReversed))
+				result = begin;
+		}
+		return result;
+	}
 
 }

@@ -29,6 +29,18 @@ public class CodingBat_Strings {
 		}
 		return result;
 	}
+	
+	public static String withoutString(String base, String remove) {
+		 
+		  int i = 0;
+		  while (i < base.length()) {
+			if (base.substring(i).toLowerCase().startsWith(remove.toLowerCase())) {
+				base = base.replace( base.substring(i, i+remove.length()) , "");
+			}
+			i++;
+		}
+		  return base;
+	}
 
 	public static String wordEnds(String str, String word) {
 //		String result = "";
@@ -57,7 +69,22 @@ public class CodingBat_Strings {
 		return fin;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(wordEnds("XY123XY1", "XY"));
+	public static int countYZ(String str) {
+		int count = 0;
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (c == 'y' || c == 'Y' || c == 'Z' || c == 'z') {
+				if (i == str.length()-1) {
+					count++;
+				}else if (!Character.isLetter(str.charAt(i+1))) {
+					count++;
+				}
+			}
+		}
+		 return count;
 	}
+
+	
+	
+	
 }

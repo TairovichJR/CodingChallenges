@@ -22,29 +22,42 @@ public class CodingBat_Strings {
 			if (str.substring(i).startsWith(word)) {
 				result = result + word;
 				i = i + word.length();
-			}else {
+			} else {
 				result = result + "+";
 				i++;
 			}
 		}
 		return result;
 	}
-	
 
+	public static String wordEnds(String str, String word) {
+//		String result = "";
+//		if (str.startsWith(word) && str.length() > word.length())
+//			result += str.charAt(word.length());
+//
+//		for (int i = 0; i < str.length()-word.length(); i++) {
+//			if (i>0 && str.substring(i, i+word.length()).equals(word)) 			
+//				result += str.charAt(i-1) + ""+str.charAt(i+word.length());
+//		}
+//		
+//		if (str.endsWith(word) && str.length() > word.length()) 
+//			result += str.charAt(str.length()-word.length()-1);
+//		
+//		return result;
+		int slen = str.length();
+		int wlen = word.length();
+		String fin = "";
+		for (int i = 0; i < slen - wlen + 1; i++) {
+			String tmp = str.substring(i, i + wlen);
+			if (i > 0 && tmp.equals(word))
+				fin += str.substring(i - 1, i);
+			if (i < slen - wlen && tmp.equals(word))
+				fin += str.substring(i + wlen, i + wlen + 1);
+		}
+		return fin;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	public static void main(String[] args) {
+		System.out.println(wordEnds("XY123XY1", "XY"));
+	}
 }

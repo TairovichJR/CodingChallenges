@@ -1,5 +1,7 @@
 package codingbat;
 
+import java.util.Arrays;
+
 /**
  * Created by tairovich_jr on Oct 14, 2020
  */
@@ -29,17 +31,17 @@ public class CodingBat_Strings {
 		}
 		return result;
 	}
-	
+
 	public static String withoutString(String base, String remove) {
-		 
-		  int i = 0;
-		  while (i < base.length()) {
+
+		int i = 0;
+		while (i < base.length()) {
 			if (base.substring(i).toLowerCase().startsWith(remove.toLowerCase())) {
-				base = base.replace( base.substring(i, i+remove.length()) , "");
+				base = base.replace(base.substring(i, i + remove.length()), "");
 			}
 			i++;
 		}
-		  return base;
+		return base;
 	}
 
 	public static String wordEnds(String str, String word) {
@@ -74,17 +76,33 @@ public class CodingBat_Strings {
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 			if (c == 'y' || c == 'Y' || c == 'Z' || c == 'z') {
-				if (i == str.length()-1) {
+				if (i == str.length() - 1) {
 					count++;
-				}else if (!Character.isLetter(str.charAt(i+1))) {
+				} else if (!Character.isLetter(str.charAt(i + 1))) {
 					count++;
 				}
 			}
 		}
-		 return count;
+		return count;
 	}
 
-	
-	
-	
+	public static boolean equalIsNot(String str) {
+
+		int isCount = 0;
+		int notCount = 0;
+
+		for (int i = 0; i <= str.length() - 3; i++) {
+			if (str.substring(i, i + 2).equals("is")) {
+				isCount++;
+			} else if (str.substring(i, i + 3).equals("not")) {
+				notCount++;
+			}
+		}
+
+	    if(str.length() >= 2 && str.substring(str.length() - 2).equals("is")) {
+	    	isCount++;
+	    }
+		
+		return isCount == notCount;
+	}
 }

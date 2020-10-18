@@ -166,4 +166,43 @@ public class CodingBat_Strings {
 		return result;
 	}
 
+	public static int maxBlock(String str) {
+		if (str == null || str.isEmpty()) {
+			return 0;
+		}
+		
+		int count = 1;
+		int maxLeng = 1;
+		for (int i = 0; i < str.length()-1; i++) {
+			char c = str.charAt(i);
+			if (c == str.charAt(i+1)) {
+				count++;
+				if (maxLeng <= count) {
+					maxLeng = count;
+				}
+			}else {
+				count = 1;
+			}
+		}
+		return maxLeng;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

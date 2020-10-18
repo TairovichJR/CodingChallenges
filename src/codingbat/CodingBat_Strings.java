@@ -166,4 +166,42 @@ public class CodingBat_Strings {
 		return result;
 	}
 
+	public static int maxBlock(String str) {
+		if (str == null || str.isEmpty()) {
+			return 0;
+		}
+
+		int count = 1;
+		int maxLeng = 1;
+		for (int i = 0; i < str.length() - 1; i++) {
+			char c = str.charAt(i);
+			if (c == str.charAt(i + 1)) {
+				count++;
+				if (maxLeng <= count) {
+					maxLeng = count;
+				}
+			} else {
+				count = 1;
+			}
+		}
+		return maxLeng;
+	}
+
+	public static int sumNumbers(String str) {
+		int sum = 0;
+		String number = "0";
+		for (int i = 0; i < str.length(); i++) {
+			if (Character.isDigit(str.charAt(i))) 
+				number += String.valueOf(str.charAt(i));
+			 else{
+				sum = sum + Integer.parseInt(number);
+				number = "0";
+			}
+			if (i == str.length()-1) sum = sum + Integer.parseInt(number);
+		}
+		return sum;
+	}
+
+	
+
 }

@@ -2,6 +2,7 @@ package codingbat;
 
 import java.util.Arrays;
 
+
 /**
  * Created by tairovich_jr on Oct 14, 2020
  */
@@ -170,12 +171,12 @@ public class CodingBat_Strings {
 		if (str == null || str.isEmpty()) {
 			return 0;
 		}
-
 		int count = 1;
 		int maxLeng = 1;
 		for (int i = 0; i < str.length() - 1; i++) {
 			char c = str.charAt(i);
 			if (c == str.charAt(i + 1)) {
+
 				count++;
 				if (maxLeng <= count) {
 					maxLeng = count;
@@ -191,16 +192,44 @@ public class CodingBat_Strings {
 		int sum = 0;
 		String number = "0";
 		for (int i = 0; i < str.length(); i++) {
-			if (Character.isDigit(str.charAt(i))) 
+			if (Character.isDigit(str.charAt(i)))
 				number += String.valueOf(str.charAt(i));
-			 else{
+			else {
 				sum = sum + Integer.parseInt(number);
 				number = "0";
 			}
-			if (i == str.length()-1) sum = sum + Integer.parseInt(number);
+			if (i == str.length() - 1)
+				sum = sum + Integer.parseInt(number);
 		}
 		return sum;
 	}
 
+	public static String notReplace(String str) {
+
+		if (str.equals("is")) {
+			return str + " not";
+		}else if(str.length() < 2 || str.isEmpty()) {
+			return "";
+		}
+		str = "."+str; 
+		String result = str;
+		for (int i = 0; i < str.length()-2; i++) {
+			String is = str.substring(i, i+2);
+			if (is.equals("is") && !Character.isLetter(str.charAt(i-1)) && !Character.isLetter(str.charAt(i+2))) 
+				result = str.substring(0, i+2) + " not" + str.substring(i+2);
+		}
+		
+		if (result.endsWith("is") &&  !Character.isLetter(result.charAt(result.length()-3))) 
+			result = result.substring(0, result.length()) + " not" + result.substring(result.length());
+		
+		return result.replace(".", "");
+	}
 	
+
 }
+
+
+
+
+
+

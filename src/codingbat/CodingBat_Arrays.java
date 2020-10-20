@@ -429,4 +429,25 @@ public class CodingBat_Arrays {
 		}
 		return !hasOne || !hasFour;
 	}
+
+	public static int maxSpan(int[] nums) {
+		int max = 0;
+		List<Integer> list = Arrays.stream(nums).boxed().collect(Collectors.toList());
+		for (int i = 0; i < nums.length; i++) {
+			int element = nums[i];
+			int index = 0;
+			int count = 0;
+			List<Integer> subList = list.subList(i, list.size());
+			while (index < subList.size() ) {
+				if (element == subList.get(index)) {
+					count = index+1;
+					if (max < count) {
+						max = count;
+					}
+				}
+				index++;
+			}
+		}
+		return max;
+	}
 }

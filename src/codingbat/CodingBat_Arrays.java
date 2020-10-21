@@ -438,9 +438,9 @@ public class CodingBat_Arrays {
 			int index = 0;
 			int count = 0;
 			List<Integer> subList = list.subList(i, list.size());
-			while (index < subList.size() ) {
+			while (index < subList.size()) {
 				if (element == subList.get(index)) {
-					count = index+1;
+					count = index + 1;
 					if (max < count) {
 						max = count;
 					}
@@ -449,5 +449,30 @@ public class CodingBat_Arrays {
 			}
 		}
 		return max;
+	}
+
+	public static int[] fix34(int[] nums) {
+		
+		for (int i = 0; i < nums.length-1; i++) {
+			int element = nums[i];	
+			if (element == 3) {			
+				if (nums[i+1] != 4 ) {
+					int j = i+1;
+					while (j < nums.length) {
+						if (nums[j] == 4) {
+							int four = nums[j];
+							nums[i+1] = four;
+							nums[j] = nums[i+1];
+						}
+						j++;
+					}
+				}
+			}
+		}
+		return nums;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(Arrays.toString(fix34(new int[] {3,1,3,4})));
 	}
 }

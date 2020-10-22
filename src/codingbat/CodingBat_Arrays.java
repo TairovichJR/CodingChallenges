@@ -452,23 +452,22 @@ public class CodingBat_Arrays {
 	}
 
 	public static int[] fix34(int[] nums) {
-		for (int i = 0; i < nums.length-1; i++) {
-			if (nums[i] == 3) {			
-				if (nums[i+1] != 4 ) {
-					int j = i+1;
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] == 3) {
+				if (nums[i + 1] != 4) {
+					int j = i + 1;
 					while (j < nums.length) {
 						if (nums[j] == 4) {
 							int four = nums[j];
-							nums[j] = nums[i+1];
-							nums[i+1] = four;
+							nums[j] = nums[i + 1];
+							nums[i + 1] = four;
 							j++;
 							break;
 						}
 						j++;
 					}
 				}
-			}
-			else if (i>0 && nums[i] == 4 && nums[i-1] != 3) {
+			} else if (i > 0 && nums[i] == 4 && nums[i - 1] != 3) {
 				int j = i;
 				while (j < nums.length) {
 					if (nums[j] != 3 && nums[j] != 4) {
@@ -480,11 +479,27 @@ public class CodingBat_Arrays {
 					}
 					j++;
 				}
-			} 		
+			}
 		}
 		return nums;
-	
+	}
 
+	public static int[] fix45(int[] nums) {
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 4) {
+				if(nums[i+1] == 5) continue;
+				for (int j = 0; j < nums.length; j++) {
+					if (nums[j] == 5 && (j == 0 || nums[j - 1] != 4)) {
+						int temp = nums[i + 1];
+						nums[i + 1] = nums[j];
+						nums[j] = temp;
+						break;
+					}
+				}
+			}
+		}
+		return nums;
 	}
 
 }

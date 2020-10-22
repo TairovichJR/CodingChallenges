@@ -452,27 +452,39 @@ public class CodingBat_Arrays {
 	}
 
 	public static int[] fix34(int[] nums) {
-		
 		for (int i = 0; i < nums.length-1; i++) {
-			int element = nums[i];	
-			if (element == 3) {			
+			if (nums[i] == 3) {			
 				if (nums[i+1] != 4 ) {
 					int j = i+1;
 					while (j < nums.length) {
 						if (nums[j] == 4) {
 							int four = nums[j];
-							nums[i+1] = four;
 							nums[j] = nums[i+1];
+							nums[i+1] = four;
+							j++;
+							break;
 						}
 						j++;
 					}
 				}
 			}
+			else if (i>0 && nums[i] == 4 && nums[i-1] != 3) {
+				int j = i;
+				while (j < nums.length) {
+					if (nums[j] != 3 && nums[j] != 4) {
+						int nonFour = nums[j];
+						nums[j] = nums[i];
+						nums[i] = nonFour;
+						j++;
+						break;
+					}
+					j++;
+				}
+			} 		
 		}
 		return nums;
+	
+
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString(fix34(new int[] {3,1,3,4})));
-	}
 }

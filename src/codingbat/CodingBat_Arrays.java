@@ -535,4 +535,30 @@ public class CodingBat_Arrays {
 		return ints;
 	}
 
+	public static int[] seriesUp(int n) {
+		
+		if (n < 1) {
+			return new int[] {};
+		}
+		List<Integer> list = new ArrayList<>();
+		for (int i = 1; i <= n; i++) {
+			
+			for (int j = 1; j <= i; j++) {
+				list.add(j);
+			}
+		}
+		return list.stream().mapToInt(i -> i).toArray();
+	}
+
+	public static void main(String[] args) {
+		System.out.println(Arrays.toString(seriesUp(4)));
+	}
+	
 }
+
+
+
+
+
+
+

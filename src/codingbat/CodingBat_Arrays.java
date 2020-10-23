@@ -507,17 +507,25 @@ public class CodingBat_Arrays {
 
 		for (int i = 0; i < nums.length; i++) {
 
-			int firstSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(0, i).stream().mapToInt(Integer::intValue).sum();
-			int secondSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(i, nums.length).stream().mapToInt(Integer::intValue).sum();
+			int firstSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(0, i).stream()
+					.mapToInt(Integer::intValue).sum();
+			int secondSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(i, nums.length).stream()
+					.mapToInt(Integer::intValue).sum();
 
 			if (firstSum == secondSum)
 				return true;
 		}
 		return false;
 	}
-	
-	
-	
 
+	public static boolean linearIn(int[] outer, int[] inner) {
+
+		return Arrays.asList(Arrays.stream(outer).boxed().toArray(Integer[]::new))
+				.containsAll(Arrays.asList(Arrays.stream(inner).boxed().toArray(Integer[]::new)));
+	}
+
+	public static void main(String[] args) {
+		System.out.println(linearIn(new int[] { 1, 2, 4, 6 }, new int[] { 2, 4 }));
+	}
 
 }

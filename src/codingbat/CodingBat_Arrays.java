@@ -524,8 +524,15 @@ public class CodingBat_Arrays {
 				.containsAll(Arrays.asList(Arrays.stream(inner).boxed().toArray(Integer[]::new)));
 	}
 
-	public static void main(String[] args) {
-		System.out.println(linearIn(new int[] { 1, 2, 4, 6 }, new int[] { 2, 4 }));
+	public static int[] squareUp(int n) {
+		 		
+		int[] ints = new int[n*n];
+		 if(n == 0)  return ints;
+		 for(int i = n - 1; i < ints.length; i += n) {
+		        for(int j = i; j >= i - i / n; j--)
+		        	ints[j] = i - j + 1;
+		    }
+		return ints;
 	}
 
 }

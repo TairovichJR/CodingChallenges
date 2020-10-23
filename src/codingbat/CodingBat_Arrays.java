@@ -488,7 +488,8 @@ public class CodingBat_Arrays {
 
 		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] == 4) {
-				if(nums[i+1] == 5) continue;
+				if (nums[i + 1] == 5)
+					continue;
 				for (int j = 0; j < nums.length; j++) {
 					if (nums[j] == 5 && (j == 0 || nums[j - 1] != 4)) {
 						int temp = nums[i + 1];
@@ -501,5 +502,22 @@ public class CodingBat_Arrays {
 		}
 		return nums;
 	}
+
+	public static boolean canBalance(int[] nums) {
+
+		for (int i = 0; i < nums.length; i++) {
+
+			int firstSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(0, i).stream().mapToInt(Integer::intValue).sum();
+			int secondSum = Arrays.stream(nums).boxed().collect(Collectors.toList()).subList(i, nums.length).stream().mapToInt(Integer::intValue).sum();
+
+			if (firstSum == secondSum)
+				return true;
+		}
+		return false;
+	}
+	
+	
+	
+
 
 }

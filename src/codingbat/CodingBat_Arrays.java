@@ -525,24 +525,25 @@ public class CodingBat_Arrays {
 	}
 
 	public static int[] squareUp(int n) {
-		 		
-		int[] ints = new int[n*n];
-		 if(n == 0)  return ints;
-		 for(int i = n - 1; i < ints.length; i += n) {
-		        for(int j = i; j >= i - i / n; j--)
-		        	ints[j] = i - j + 1;
-		    }
+
+		int[] ints = new int[n * n];
+		if (n == 0)
+			return ints;
+		for (int i = n - 1; i < ints.length; i += n) {
+			for (int j = i; j >= i - i / n; j--)
+				ints[j] = i - j + 1;
+		}
 		return ints;
 	}
 
 	public static int[] seriesUp(int n) {
-		
+
 		if (n < 1) {
 			return new int[] {};
 		}
 		List<Integer> list = new ArrayList<>();
 		for (int i = 1; i <= n; i++) {
-			
+
 			for (int j = 1; j <= i; j++) {
 				list.add(j);
 			}
@@ -550,15 +551,24 @@ public class CodingBat_Arrays {
 		return list.stream().mapToInt(i -> i).toArray();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString(seriesUp(4)));
+	public static int maxMirror(int[] nums) {
+		int len = nums.length, count = 0, max = 0;
+		for (int i = 0; i < len; i++) {
+			count = 0;
+			for (int j = len - 1; j > -1 && i + count < len; j--) {
+
+				if (nums[i + count] == nums[j]) {
+					count++;
+				} else {
+					if (count > 0) {
+						max = Math.max(count, max);
+						count = 0;
+					}
+				}
+			}
+			max = Math.max(count, max);
+		}
+		return max;
 	}
-	
+
 }
-
-
-
-
-
-
-

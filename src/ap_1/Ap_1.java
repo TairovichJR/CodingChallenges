@@ -105,38 +105,82 @@ public class Ap_1 {
 	public static boolean dividesSelf(int n) {
 		int number = n;
 		while (n > 0) {
-			
+
 			int digit = n % 10;
 			n = n / 10;
-			
+
 			if (digit == 0 || number % digit != 0) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	public static int[] copyEvens(int[] nums, int count) {
-	
+
 		int[] evens = new int[count];
 		for (int i = 0, evenIndex = 0; i < nums.length; i++) {
 			if (nums[i] % 2 == 0) {
 				if (evenIndex < evens.length) {
 					evens[evenIndex] = nums[i];
 					evenIndex++;
-				}else {
+				} else {
 					break;
 				}
-				
+
 			}
 		}
 		return evens;
 	}
 
+	public static int[] copyEndy(int[] nums, int count) {
 
-	public static void main(String[] args) {
+		int[] endy = new int[count];
+		for (int i = 0, index = 0; i < nums.length; i++) {
+			if ((nums[i] >= 0 && nums[i] <= 10) || (nums[i] >= 90 && nums[i] <= 100)) {
+				if (index < endy.length) {
+					endy[index] = nums[i];
+					index++;
+				} else {
+					break;
+				}
+			}
 
-		System.out.println(copyEvens(new int[] {6, 1, 2, 4, 5, 8,9,1}, 3));
+		}
+		return endy;
 	}
+
+	public static int matchUp(String[] a, String[] b) {
+		
+		int count = 0;
+		for (int i = 0; i < b.length; i++) {
+			if (!a[i].isEmpty() && !b[i].isEmpty() ) {
+				if (a[i].charAt(0) == b[i].charAt(0)) {
+					count++;
+				}
+			}
+		}	
+		return count;
+	}
+
+	public int scoreUp(String[] key, String[] answers) {
+		 
+		int score = 0;
+		for (int i = 0; i < answers.length; i++) {
+			
+			if (key[i] .equals(answers[i])) {
+				score += 4;
+			}else if (!answers[i].equals("?")) {
+				score -= 1;
+			}
+		}
+		return score;
+	}
+
+	public String[] wordsWithout(String[] words, String target) {
+		 
+		return Arrays.stream(words).filter(i -> !i.equals(target)).toArray(String[]::new) ;
+	}
+
 
 }

@@ -3,6 +3,7 @@ package ap_1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by tairovich_jr on Oct 24, 2020
@@ -151,26 +152,26 @@ public class Ap_1 {
 	}
 
 	public static int matchUp(String[] a, String[] b) {
-		
+
 		int count = 0;
 		for (int i = 0; i < b.length; i++) {
-			if (!a[i].isEmpty() && !b[i].isEmpty() ) {
+			if (!a[i].isEmpty() && !b[i].isEmpty()) {
 				if (a[i].charAt(0) == b[i].charAt(0)) {
 					count++;
 				}
 			}
-		}	
+		}
 		return count;
 	}
 
 	public int scoreUp(String[] key, String[] answers) {
-		 
+
 		int score = 0;
 		for (int i = 0; i < answers.length; i++) {
-			
-			if (key[i] .equals(answers[i])) {
+
+			if (key[i].equals(answers[i])) {
 				score += 4;
-			}else if (!answers[i].equals("?")) {
+			} else if (!answers[i].equals("?")) {
 				score -= 1;
 			}
 		}
@@ -178,9 +179,55 @@ public class Ap_1 {
 	}
 
 	public String[] wordsWithout(String[] words, String target) {
-		 
-		return Arrays.stream(words).filter(i -> !i.equals(target)).toArray(String[]::new) ;
+
+		return Arrays.stream(words).filter(i -> !i.equals(target)).toArray(String[]::new);
 	}
 
+	public static int scoresSpecial(int[] a, int[] b) {
+		int maxOfA = Arrays.stream(a).filter(i -> i % 10 == 0).boxed().mapToInt(i -> i).max().orElse(0);
+		int maxOfB = Arrays.stream(b).filter(i -> i % 10 == 0).boxed().mapToInt(i -> i).max().orElse(0);
+		return maxOfA + maxOfB;
+	}
 
+	public static int sumHeights(int[] heights, int start, int end) {
+
+		List<Integer> list = Arrays.stream(heights).boxed().collect(Collectors.toList()).subList(start, end + 1);
+		int sum = 0;
+		for (int i = 0; i < list.size() - 1; i++) {
+			sum += Math.abs(list.get(i) - list.get(i + 1));
+		}
+		return sum;
+	}
+
+	public static int sumHeights2(int[] heights, int start, int end) {
+
+		List<Integer> list = Arrays.stream(heights).boxed().collect(Collectors.toList()).subList(start, end + 1);
+		int sum = 0;
+		for (int i = 0; i < list.size() - 1; i++) {
+
+			int digit = list.get(i) - list.get(i + 1);
+			if (digit < 0) {
+				digit = digit * 2;
+			}
+			sum += Math.abs(digit);
+		}
+		return sum;
+	}
+
+	public static int bigHeights(int[] heights, int start, int end) {
+		List<Integer> list = Arrays.stream(heights).boxed().collect(Collectors.toList()).subList(start, end + 1);
+		int count = 0;
+		for (int i = 0; i < list.size() - 1; i++) {
+
+			int digit = Math.abs(list.get(i) - list.get(i + 1));
+			if (digit >= 5) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(bigHeights(new int[] { 5, 13, 6, 7, 2 }, 0, 4));
+	}
 }

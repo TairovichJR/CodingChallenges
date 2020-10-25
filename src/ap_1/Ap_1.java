@@ -115,10 +115,28 @@ public class Ap_1 {
 		}
 		return true;
 	}
+	
+	public static int[] copyEvens(int[] nums, int count) {
+	
+		int[] evens = new int[count];
+		for (int i = 0, evenIndex = 0; i < nums.length; i++) {
+			if (nums[i] % 2 == 0) {
+				if (evenIndex < evens.length) {
+					evens[evenIndex] = nums[i];
+					evenIndex++;
+				}else {
+					break;
+				}
+				
+			}
+		}
+		return evens;
+	}
+
 
 	public static void main(String[] args) {
 
-		System.out.println(dividesSelf(120));
+		System.out.println(copyEvens(new int[] {6, 1, 2, 4, 5, 8,9,1}, 3));
 	}
 
 }

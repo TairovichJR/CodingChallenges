@@ -2,7 +2,13 @@ package ap_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -228,27 +234,42 @@ public class Ap_1 {
 	}
 
 	public static int userCompare(String aName, int aId, String bName, int bId) {
-		
+
 		int nameOrder = aName.compareTo(bName);
-		
+
 		if (nameOrder > 0) {
 			return 1;
-		}
-		else if (nameOrder < 0) {
+		} else if (nameOrder < 0) {
 			return -1;
 		}
-		
+
 		else if (nameOrder == 0) {
 			if (aId < bId) {
 				return -1;
-			}
-			else if (aId > bId) {
+			} else if (aId > bId) {
 				return 1;
-			}else {
+			} else {
 				return 1;
 			}
 		}
-		
+
 		return 0;
 	}
+
+	public static String[] mergeTwo(String[] a, String[] b, int n) {
+
+		Set<String> collection = new HashSet<>();
+		collection.addAll(Arrays.asList(a));
+		collection.addAll(Arrays.asList(b));
+		TreeSet<String> tree = new TreeSet<>(collection);
+		
+		String[] arr = new String[n];
+		Iterator<String> iter = tree.iterator();
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = iter.next();
+		}
+		return arr;	
+	}
+	
+
 }

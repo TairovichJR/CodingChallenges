@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
 /**
@@ -271,5 +272,29 @@ public class Ap_1 {
 		return arr;	
 	}
 	
+	public static int commonTwo(String[] a, String[] b) {
+		  
+		Set<String> aSet = new HashSet<>(Arrays.asList(a));
+		Set<String> bSet = new HashSet<>(Arrays.asList(b));
+		
+		List<String> collection = new ArrayList<>();
+		collection.addAll(aSet);
+		collection.addAll(bSet);
+		
+		Set<String> allSet = new HashSet<>();
+		
+		int count = 0;
+		for (String el : collection) {
+			if (allSet.add(el) == false) {
+				count++;
+			}
+		}
+		return count;
+	}
 
+
+	public static void main(String[] args) {
+		
+		commonTwo(new String[] {"a", "c", "x"}, new String[] {"b", "c", "d", "x"});
+	}
 }

@@ -100,5 +100,15 @@ public class Easy_Recursions {
         }
     }
 
+    public static int countHi(String str) {
 
+      if (str.length() < 2)
+          return 0;
+      else {
+          if (str.startsWith("hi"))
+              return 1 + countHi(str.substring(2));
+          else
+              return 0 + countHi(str.substring(1));
+      }
+    }
 }

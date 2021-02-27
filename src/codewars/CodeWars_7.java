@@ -1,5 +1,9 @@
 package codewars;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 public class CodeWars_7 {
 
     public String spoonerize(String words) {
@@ -19,4 +23,11 @@ public class CodeWars_7 {
         String[] word = words.split(" ");
         return word[1].substring(0, 1) + word[0].substring(1) + " " + word[0].substring(0, 1) + word[1].substring(1);
     }
+
+    public static int sortDesc(final int num) {
+       return num >= 0 ? Integer.parseInt(Arrays.stream(String.valueOf(num).split(""))
+               .sorted((a, b) -> b.compareTo(a))
+               .collect(Collectors.joining(""))) : num;
+    }
+
 }

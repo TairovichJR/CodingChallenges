@@ -40,14 +40,19 @@ public class CodeWars_7 {
 
     public static String vowel2Index(String s) {
 
-        List<String> vowels = List.of("a","e","i","o","u");
-        String[] chars = s.split("");
-        for (int i = 0; i < chars.length; i++) {
-           if (  vowels.contains(chars[i]) ){
-               chars[i] = String.valueOf(i+1);
-            }
+//        List<String> vowels = List.of("a","e","i","o","u");
+//        String[] chars = s.split("");
+//        for (int i = 0; i < chars.length; i++) {
+//           if (  vowels.contains(chars[i]) ){
+//               chars[i] = String.valueOf(i+1);
+//            }
+//        }
+//        return Arrays.stream(chars).collect(Collectors.joining(""));
+        String result = "";
+        for (int i = 0; i < s.length(); i++) {
+          result = result + ("aeiouAEIOU".indexOf(s.charAt(i)) == -1 ? String.valueOf(s.charAt(i)) : (i + 1));
         }
-        return Arrays.stream(chars).collect(Collectors.joining(""));
+        return result;
     }
 }
 

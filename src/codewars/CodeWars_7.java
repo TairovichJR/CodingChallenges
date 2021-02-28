@@ -3,6 +3,7 @@ package codewars;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CodeWars_7 {
 
@@ -48,11 +49,14 @@ public class CodeWars_7 {
 //            }
 //        }
 //        return Arrays.stream(chars).collect(Collectors.joining(""));
-        String result = "";
-        for (int i = 0; i < s.length(); i++) {
-          result = result + ("aeiouAEIOU".indexOf(s.charAt(i)) == -1 ? String.valueOf(s.charAt(i)) : (i + 1));
-        }
-        return result;
+//        String result = "";
+//        for (int i = 0; i < s.length(); i++) {
+//          result = result + ("aeiouAEIOU".indexOf(s.charAt(i)) == -1 ? String.valueOf(s.charAt(i)) : (i + 1));
+//        }
+//        return result;
+        return IntStream.range(0, s.length())
+                .mapToObj( i -> "aeiouAEIOU".indexOf(s.charAt(i)) >=0 ? String.valueOf(i+1) : String.valueOf(s.charAt(i)))
+                .collect(Collectors.joining());
     }
 }
 

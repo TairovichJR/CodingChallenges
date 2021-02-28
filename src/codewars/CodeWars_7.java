@@ -1,7 +1,7 @@
 package codewars;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CodeWars_7 {
@@ -25,9 +25,38 @@ public class CodeWars_7 {
     }
 
     public static int sortDesc(final int num) {
+
+
+
        return num >= 0 ? Integer.parseInt(Arrays.stream(String.valueOf(num).split(""))
                .sorted((a, b) -> b.compareTo(a))
                .collect(Collectors.joining(""))) : num;
     }
 
+    public static String oddOrEven (int[] array) {
+
+        return Arrays.stream(array).sum() % 2 == 0 ? "even" : "odd";
+    }
+
+    public static String vowel2Index(String s) {
+
+        List<String> vowels = List.of("a","e","i","o","u");
+        String[] chars = s.split("");
+        for (int i = 0; i < chars.length; i++) {
+           if (  vowels.contains(chars[i]) ){
+               chars[i] = String.valueOf(i+1);
+            }
+        }
+        return Arrays.stream(chars).collect(Collectors.joining(""));
+    }
 }
+
+
+
+
+
+
+
+
+
+

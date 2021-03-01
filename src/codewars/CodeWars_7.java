@@ -2,6 +2,8 @@ package codewars;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -58,6 +60,36 @@ public class CodeWars_7 {
                 .mapToObj( i -> "aeiouAEIOU".indexOf(s.charAt(i)) >=0 ? String.valueOf(i+1) : String.valueOf(s.charAt(i)))
                 .collect(Collectors.joining());
     }
+
+    public static String alhapNum(int N, String S){
+
+        StringBuffer newStr=new StringBuffer(S);
+        for(int i = 0; i < S.length(); i++) {
+
+            if(Character.isLowerCase(S.charAt(i))) {
+                newStr.setCharAt(i, Character.toUpperCase(S.charAt(i)));
+            }
+            else if(Character.isUpperCase(S.charAt(i))) {
+                newStr.setCharAt(i, Character.toLowerCase(S.charAt(i)));
+            }
+        }
+        return newStr.toString();
+    }
+
+    public static String qualified(int N, int A[]){
+
+        String rows = "0 ";
+        int max = A[0];
+        for (int i = 0; i < A.length; i++) {
+            if (max < A[i]){
+                rows += " " + i;
+                max = A[i];
+            }
+        }
+        return rows.trim();
+    }
+
+
 }
 
 

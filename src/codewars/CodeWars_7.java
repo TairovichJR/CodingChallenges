@@ -62,10 +62,8 @@ public class CodeWars_7 {
     }
 
     public static String alhapNum(int N, String S){
-
         StringBuffer newStr=new StringBuffer(S);
         for(int i = 0; i < S.length(); i++) {
-
             if(Character.isLowerCase(S.charAt(i))) {
                 newStr.setCharAt(i, Character.toUpperCase(S.charAt(i)));
             }
@@ -77,7 +75,6 @@ public class CodeWars_7 {
     }
 
     public static String qualified(int N, int A[]){
-
         String rows = "0 ";
         int max = A[0];
         for (int i = 0; i < A.length; i++) {
@@ -90,6 +87,51 @@ public class CodeWars_7 {
     }
 
 
+
+    public static int findCredit(int customers, int fooditems, int[]customerlimit, int[] foodcredit){
+        int count = 0;
+        for (int i = 0; i < foodcredit.length; i++) {
+            for (int j = 0; j < customerlimit.length; j++) {
+
+                if (customerlimit[j] >= foodcredit[i]){
+                    count++;
+                }
+            }
+        }
+        return  count;
+    }
+
+    public static int oddEven(int N, int A[]){
+
+        int[] even = Arrays.stream(A).filter(n -> n % 2 == 0).sorted().toArray();
+        int[] odd = Arrays.stream(A).filter(n -> n % 2 != 0).sorted().toArray();
+
+        int evenMedium = 0;
+        int evenLength = even.length;
+        if (evenLength > 0){
+            if (evenLength % 2 == 1){
+                evenMedium = even[ (evenLength+1)/2-1 ];
+            }else{
+                evenMedium = (even[evenLength/2-1] + even[evenLength/2])/2;
+            }
+        }
+        int oddMedium = 0;
+        int oddLength = odd.length;
+        if (oddLength > 0){
+            if (oddLength % 2 == 1){
+                oddMedium = odd[ (oddLength+1)/2-1 ];
+            }else{
+                oddMedium = (odd[oddLength/2-1] + odd[oddLength/2])/2;
+            }
+        }
+
+
+        return evenMedium + oddMedium;
+    }
+    public static void main(String[] args) {
+        System.out.println(oddEven(8, new int[]{2,4,6,8,10,12,14,16}));
+
+    }
 }
 
 

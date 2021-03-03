@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CodeWars_6 {
 
@@ -23,15 +24,21 @@ public class CodeWars_6 {
     }
 
     public static String expandedForm(int num) {
-        String str = String.valueOf(num);
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < str.length(); i++){
-            int n = Integer.parseInt(str.substring(i, i + 1));
-            if (n > 0){
-                result.add(n + str.substring(i+1).replaceAll("[0-9]","0") );
-            }
-        }
-        return result.stream().collect(Collectors.joining(" + "));
+//        String str = String.valueOf(num);
+//        List<String> result = new ArrayList<>();
+//        for (int i = 0; i < str.length(); i++){
+//            int n = Integer.parseInt(str.substring(i, i + 1));
+//            if (n > 0){
+//                result.add(n + str.substring(i+1).replaceAll("[0-9]","0") );
+//            }
+//        }
+//        return result.stream().collect(Collectors.joining(" + "));
+
+        return IntStream.range(0, String.valueOf(num).length())
+                .mapToObj(x -> String.valueOf(Character.getNumericValue(String.valueOf(num).charAt(x))
+                * (int)Math.pow(10, String.valueOf(num).substring(x).length()-1)))
+                .filter(x -> !x.equals("0"))
+                .collect(Collectors.joining(" + "));
     }
 
     public static void main(String[] args) {

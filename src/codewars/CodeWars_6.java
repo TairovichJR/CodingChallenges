@@ -2,7 +2,10 @@ package codewars;
 
 import java.text.DateFormatSymbols;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CodeWars_6 {
 
@@ -19,13 +22,21 @@ public class CodeWars_6 {
         return "";
     }
 
+    public static String expandedForm(int num) {
+        String str = String.valueOf(num);
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < str.length(); i++){
+            int n = Integer.parseInt(str.substring(i, i + 1));
+            if (n > 0){
+                result.add(n + str.substring(i+1).replaceAll("[0-9]","0") );
+            }
+        }
+        return result.stream().collect(Collectors.joining(" + "));
+    }
 
     public static void main(String[] args) {
 
-
-        System.out.println(getDay(608, true));
-
-
-        System.out.println(Arrays.toString( new DateFormatSymbols().getMonths()));
+        System.out.println(expandedForm(70304));
+        System.out.println( "3337675454".substring(1).replaceAll("[0-9]","0"));
     }
 }

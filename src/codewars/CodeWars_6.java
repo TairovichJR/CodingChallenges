@@ -41,9 +41,26 @@ public class CodeWars_6 {
                 .collect(Collectors.joining(" + "));
     }
 
+    public static int plusMinus(int n, String s){
+        String[] split = s.split("");
+        List<String> collect = Arrays.stream(split).collect(Collectors.toList());
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++ ){
+                List<String> sublist = collect.subList(i, j);
+                int plus = (int)sublist.stream().filter(el -> el.equals("+")).count();
+                int minus = (int)sublist.stream().filter(el -> el.equals("-")).count();
+                int diff = plus - minus;
+                if (diff > max){
+                    max = diff;
+                }
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
 
-        System.out.println(expandedForm(70304));
-        System.out.println( "3337675454".substring(1).replaceAll("[0-9]","0"));
+        System.out.println(plusMinus(29, "-++++--+---+----+-+--++++++-+"));
     }
 }

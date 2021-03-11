@@ -2,9 +2,7 @@ package codewars;
 
 import java.text.DateFormatSymbols;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -59,8 +57,51 @@ public class CodeWars_6 {
         return max;
     }
 
+    public static String noOffFactors(int N, int X, int A[]){
+
+        ArrayList<Integer> factors = new ArrayList<>();
+        int[] sorted = Arrays.stream(A).distinct().sorted().toArray();
+        Arrays.stream(sorted).filter( x -> X>=x && X%x == 0).forEach(x -> factors.add(x));
+        String result = factors.stream().map(arr -> String.valueOf(arr)).collect(Collectors.joining(" "));
+        return factors.size() + "\n" + result;
+    }
+
+    public static void shortestJobFirst(int N, int[] B){
+        int[] sortedB = Arrays.stream(B).sorted().toArray();
+        ArrayList<Integer> saved = new ArrayList<>();
+        int j = 0;
+        for (int i = 0; i < sortedB.length; i++) {
+            j = j + sortedB[i];
+            saved.add(j);
+        }
+        final long count = saved.stream().reduce(0, (a,b)-> a+b);
+        System.out.println( (int) Math.floor( count/saved.size()));
+    }
+
+    public static String longestConsec(String[] strarr, int k) {
+
+        if (k > 0 && (strarr.length > 0 && strarr.length > k)){
+            String[] str = new String[strarr.length-k+1];
+            for (int i = 0; i < str.length; i++){
+                String item = "";
+                for (int j = i; j < i+k; j++){
+                      item  += strarr[j];
+                }
+                str[i] = item;
+            }
+            String first = Arrays.stream(str)
+                    .max(Comparator.comparingInt(String::length)).stream().findFirst()
+                    .get();
+            return first;
+        }
+        return "";
+    }
+
+
     public static void main(String[] args) {
 
-        System.out.println(plusMinus(29, "-++++--+---+----+-+--++++++-+"));
+        System.out.println( longestConsec(
+                new String[]{"zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"}, 2));
+
     }
 }

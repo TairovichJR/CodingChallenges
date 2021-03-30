@@ -20,7 +20,7 @@ public class KangarooJump {
            if (v1 <= v2) {
                int first = x1;
                int second = x2;
-               while (first < (first * 10) && second < (second * 10)) {
+               while (first < ((first+1) * 10) && second < ((second+1) * 10)) {
                    first += v1;
                    second += v2;
                    if (first == second) {

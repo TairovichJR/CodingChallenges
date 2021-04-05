@@ -1,5 +1,7 @@
 package codingbat;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,4 +23,18 @@ public class Maps_2 {
         }
         return result;
     }
+    public static Map<String, Boolean> wordMultiple(String[] strings) {
+
+        Map<String, Boolean> map = new HashMap<>();
+        Arrays.stream(strings).forEach( str -> {
+            if (map.containsKey(str)){
+                map.put(str, true);
+            }else{
+                map.put(str, false);
+            }
+        });
+        return map;
+
+    }
+
 }

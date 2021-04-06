@@ -3,7 +3,9 @@ package codingbat;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Maps_2 {
 
@@ -37,4 +39,32 @@ public class Maps_2 {
 
     }
 
+
+    public static String[] allSwap(String[] strings) {
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < strings.length; i++) {
+            char c = strings[i].charAt(0);
+            if (map.containsKey(c)){
+                Integer foundIndex = map.get(c);
+                String temp = strings[foundIndex];
+                strings[foundIndex] = strings[i];
+                strings[i] = temp;
+                map.remove(c);
+            }else{
+                map.put(c, i);
+            }
+        }
+        return strings;
+    }
+
 }
+
+
+
+
+
+
+
+
+

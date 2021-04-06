@@ -41,7 +41,6 @@ public class Maps_2 {
 
 
     public static String[] allSwap(String[] strings) {
-
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < strings.length; i++) {
             char c = strings[i].charAt(0);
@@ -58,6 +57,24 @@ public class Maps_2 {
         return strings;
     }
 
+    public static String[] firstSwap(String[] strings) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < strings.length; i++) {
+            char c = strings[i].charAt(0);
+            if (map.containsKey(c)){
+                Integer foundIndex = map.get(c);
+                if (foundIndex != -1){
+                    String temp = strings[foundIndex];
+                    strings[foundIndex] = strings[i];
+                    strings[i] = temp;
+                    map.put(c, -1);
+                }
+            }else{
+                map.put(c, i);
+            }
+        }
+        return strings;
+    }
 }
 
 

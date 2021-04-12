@@ -1,9 +1,5 @@
 package hackerrank_easy;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 public class DivisibleSumPairs {
 
     static int divisibleSumPairs(int n, int k, int[] ar) {

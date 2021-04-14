@@ -35,9 +35,18 @@ public class DrawingBook {
         return Math.min(forwardFlip, backwardFlip);
     }
 
+    static int pageCount2(int n, int p) {
+
+        int totalPageTurnCountFromFront = n / 2;
+        int targetPageTurnCountFromFront = p / 2;
+        int targetPageTurnCountFromBack = totalPageTurnCountFromFront - targetPageTurnCountFromFront;
+
+        return Math.min(targetPageTurnCountFromFront, targetPageTurnCountFromBack);
+
+    }
     public static void main(String[] args) {
 
-        System.out.println(pageCount(5,3));
+        System.out.println(pageCount2(5,3));
 
     }
 }
